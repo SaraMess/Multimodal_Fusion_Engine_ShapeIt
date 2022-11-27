@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE grammar PUBLIC "-//W3C//DTD GRAMMAR 1.0//EN"
+                "grammar.dtd">
+<!-- the default grammar language is FR  -->
+<grammar  version="1.0"
+          mode ="voice"
+          xmlns="http://www.w3.org/2001/06/grammar"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.w3.org/2001/06/grammar
+                              grammar.xsd"
+          xml:lang="fr-FR" root="Speech_Recognition" tag-format="semantics/1.0">
+
+	<rule id="Speech_Recognition" scope="public">
+		<one-of>
+			<item> commence <tag> out = "1 start=1" </tag> </item>
+			<item> <ruleref uri="#instruction"/> <tag> out = rules.instruction </tag> </item>
+		</one-of>
+	</rule>
+	
+	
+	<rule id="instruction">
+		<one-of>
+			<item> <ruleref uri="#total"/> <tag> out = rules.total </tag> </item>
+			<item> <ruleref uri="#total2"/> <tag> out = rules.total2 </tag> </item>
+			<item> <ruleref uri="#total_"/> <tag> out = rules.total_ </tag> </item>
+			<item> <ruleref uri="#total2_"/> <tag> out = rules.total2_ </tag> </item>
+			<item> <ruleref uri="#total3"/> <tag> out = rules.total3 </tag> </item>
+			<item> <ruleref uri="#total4"/> <tag> out = rules.total4 </tag> </item>
+			<item> coupe du monde <tag> out = "1 cocorico" </tag> </item>
+		</one-of> 
+	</rule>
+	
+	<!-- not pointing the color-->
+	<rule id="total">
+		<tag>
+		out.point = "false";
+		out.local = "false";
+		</tag>
+		<one-of>
+			<item> <ruleref uri="#actionC"/> <tag> out.action = rules.actionC </tag></item>
+			<item> <ruleref uri="#actionM"/> <tag> out.action = rules.actionM </tag></item>
+		</one-of>
+		<item> <ruleref uri="#pointage"/> <tag> out.point = "true" </tag></item>
+		<item> <ruleref uri="#shape"/> <tag> out.shape = rules.shape </tag></item>
+		<item repeat="0-1"> <ruleref uri="#color"/> <tag> out.color = rules.color </tag></item>
+		<item> <ruleref uri="#localisation"/> <tag> out.local = "true" </tag> </item>
+		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " color=" + out.color + " localisation=" + out.local </tag>
+	</rule>
+	
+	<rule id="total_">
+		<tag>
+		out.point = "false";
+		out.local = "false";
+		</tag>
+		<one-of>
+			<item> <ruleref uri="#actionC"/> <tag> out.action = rules.actionC </tag></item>
+			<item> <ruleref uri="#actionM"/> <tag> out.action = rules.actionM </tag></item>
+		</one-of>
+		<item> <ruleref uri="#pointage"/> <tag> out.point = "true" </tag></item>
+		<item> <ruleref uri="#shape"/> <tag> out.shape = rules.shape </tag></item>
+		<item repeat="0-1"> <ruleref uri="#localisation"/> <tag> out.local = "true" </tag> </item>
+		<item> <ruleref uri="#color"/> <tag> out.color = rules.color </tag></item>
+		
+		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " localisation=" + out.local + " color=" + out.color </tag>
+	</rule>
+	
+	<rule id="total2">
+		<tag>
+		out.point = "false";
+		out.local = "false";
+		</tag>
+		<one-of>
+			<item> <ruleref uri="#actionC"/> <tag> out.action = rules.actionC </tag></item>
+			<item> <ruleref uri="#actionM"/> <tag> out.action = rules.actionM </tag></item>
+		</one-of>
+		<item repeat="0-1"> <ruleref uri="#prep"/> <tag> out.point = "false" </tag></item>
+		<item> <ruleref uri="#shape"/> <tag> out.shape = rules.shape </tag></item>
+		<item repeat="0-1"> <ruleref uri="#color"/> <tag> out.color = rules.color </tag></item>
+		<item repeat="0-1"> <ruleref uri="#localisation"/> <tag> out.local = "true" </tag> </item>
+		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " color=" + out.color + " localisation=" + out.local </tag>
+	</rule>
+	
+	<rule id="total2_">
+		<tag>
+		out.point = "false";
+		out.local = "false";
+		</tag>
+		<one-of>
+			<item> <ruleref uri="#actionC"/> <tag> out.action = rules.actionC </tag></item>
+			<item> <ruleref uri="#actionM"/> <tag> out.action = rules.actionM </tag></item>
+		</one-of>
+		<item repeat="0-1"> <ruleref uri="#prep"/> <tag> out.point = "false" </tag></item>
+		<item> <ruleref uri="#shape"/> <tag> out.shape = rules.shape </tag></item>
+		<item repeat="0-1"> <ruleref uri="#localisation"/> <tag> out.local = "true" </tag> </item>
+		<item repeat="0-1"> <ruleref uri="#color"/> <tag> out.color = rules.color </tag></item>
+		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " localisation=" + out.local  + " color=" + out.color </tag>
+	</rule>
+	
+	<rule id="total3">
+		<tag>
+		out.point = "false";
+		out.local = "false";
+		</tag>
+		<item> <ruleref uri="#actionD"/> <tag> out.action = rules.actionD </tag></item>
+		<item repeat="0-1">
+			<one-of>
+				<item> <ruleref uri="#pointage"/> <tag> out.point = "true" </tag></item>
+				<item> <ruleref uri="#prep"/> <tag> out.point = "false" </tag></item>
+			</one-of>
+		</item>
+		<item> <ruleref uri="#shape"/> <tag> out.shape = rules.shape </tag></item>
+		<item repeat="0-1"> <ruleref uri="#color"/> <tag> out.color = rules.color </tag></item>
+		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " color=" + out.color + " localisation=false" </tag>
+	</rule>
+	
+	<rule id="total4">
+		<tag>
+		out.point = "false";
+		out.local = "false";
+		</tag>
+		<item> <ruleref uri="#actionO"/> <tag> out.action = rules.actionO </tag></item>
+		<item repeat="0-1">
+			<one-of>
+				<item> <ruleref uri="#pointage"/> <tag> out.point = "true" </tag></item>
+				<item> <ruleref uri="#prep"/> <tag> out.point = "false" </tag></item>
+			</one-of>
+		</item>
+		<item> <ruleref uri="#shape"/> <tag> out.shape = rules.shape </tag></item>
+		<item repeat="0-1"> <ruleref uri="#color"/> <tag> out.color = rules.color </tag></item>
+		<item repeat="0-1"> en </item>
+		<item> <ruleref uri="#colorN"/> <tag> out.colorN = rules.colorN </tag></item>
+		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " color=" + out.color + " colorN=" + out.colorN </tag>
+	</rule>
+
+	
+	<rule id="actionC">
+		<one-of>
+			<item> cree <tag> out = "c" </tag></item>
+			<item> dessine <tag> out = "c" </tag></item>
+			<item> trace <tag> out = "c" </tag></item>
+		</one-of>
+	</rule>
+	
+	<rule id="actionD">
+		<one-of>
+			<item> supprime <tag> out = "d" </tag></item>
+			<item> efface <tag> out = "d" </tag></item>
+			<item> blanchi <tag> out = "d" </tag></item>
+		</one-of>
+	</rule>
+	
+	<rule id="actionM">
+		<one-of>
+			<item> deplace  <tag> out = "m" </tag></item>
+			<item> bouge  <tag> out = "m" </tag></item>
+		</one-of>
+	</rule>
+	
+	<rule id="actionQ">
+		<one-of>
+			<item> quitter <tag> out = "q" </tag></item>
+			<item> sortir <tag> out = "q" </tag></item>
+			<item> arrêter <tag> out = "q" </tag></item>
+		</one-of>
+	</rule>
+	
+	
+	<rule id="actionO">
+		<one-of>
+			<item> colorie <tag> out = "o" </tag></item>
+			<item> peint <tag> out = "o" </tag></item>
+			<item> change <tag> out = "o" </tag></item>
+		</one-of>
+	</rule>
+	
+	<rule id="action">
+		<tag> out = "undefined" </tag>
+		<one-of>
+			<item> <ruleref uri="#actionC"/> <tag> out = "c" </tag></item>
+			<item> <ruleref uri="#actionD"/> <tag> out = "d" </tag></item>
+			<item> <ruleref uri="#actionM"/> <tag> out = "m" </tag></item>
+			<item> <ruleref uri="#actionQ"/> <tag> out = "q" </tag></item>
+		</one-of>
+	</rule>
+	
+	<rule id="localisation">
+		<tag> out = "false" </tag>	
+		<one-of>
+			<!--item> là <tag> out = "THERE" </tag></item-->
+			<item> ici <tag> out = "true" </tag></item>
+			<item> à cet endroit <tag> out = "true" </tag></item>
+		</one-of>
+	</rule>
+
+	<rule id="pointage">
+		<tag> out = "undefined" </tag>
+		<one-of>
+			<item> cette <tag> out = "undefined" </tag></item>
+			<item> ça <tag> out = "undefined" </tag></item>
+			<item> ce </item>
+		</one-of>
+	</rule>
+
+	<rule id="shape">
+		<tag> out = "undefined" </tag>
+		<one-of>
+			<item> triangle <tag> out = "t" </tag></item>
+			<item> losange <tag> out = "l" </tag></item>
+			<item> cercle <tag> out = "c" </tag></item>
+			<item> rectangle <tag> out = "r" </tag></item>
+			<item> forme <tag> out = "undefined" </tag></item>
+		</one-of>
+	</rule>
+
+	<rule id="color">
+		<tag> out = "undefined" </tag>
+		<one-of>
+			<item> rouge <tag> out = "255-0-0" </tag></item>
+			<item> orange <tag> out = "255-127-0" </tag></item>
+			<item> jaune <tag> out = "255-228-54" </tag></item>
+			<item> vert <tag> out = "0-255-0" </tag></item>
+			<item> bleu <tag> out = "0-0-255" </tag></item>
+			<item> violet <tag> out = "143-0-255" </tag></item>
+			<item> noir <tag> out = "0-0-0" </tag></item>
+			<item> de cette couleur <tag> out = "palette" </tag></item>
+		</one-of> 
+	</rule>
+	
+	<rule id="colorN">
+		<tag> out = "undefined" </tag>
+		<one-of>
+			<item> rouge <tag> out = "255-0-0" </tag></item>
+			<item> orange <tag> out = "255-127-0" </tag></item>
+			<item> jaune <tag> out = "255-228-54" </tag></item>
+			<item> vert <tag> out = "0-255-0" </tag></item>
+			<item> bleu <tag> out = "0-0-255" </tag></item>
+			<item> violet <tag> out = "114-49-137" </tag></item>
+			<item> noir <tag> out = "0-0-0" </tag></item>
+			<item> de cette couleur <tag> out = "palette" </tag></item>
+		</one-of> 
+	</rule>
+
+	
+	
+	<rule id="prep">
+		<one-of>
+			<item> un </item>
+			<item> une </item>
+			<item> le </item>
+			<item> la </item>
+		</one-of>
+	</rule>
+	
+</grammar>
