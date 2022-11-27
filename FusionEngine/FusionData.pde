@@ -189,7 +189,7 @@ public class FusionData {
              default:
                keepW = false;
                noMatch = true;
-               feedUser = "Trop de clicks ! Je ne comprends pas, voulez vous recommencer ?";
+               feedUser = "Trop de clicks ! Je ne comprends pas, veux tu recommencer ?";
                break;
           }
          }
@@ -272,11 +272,11 @@ public class FusionData {
                  break;
                case 1:
                   keepW = true;
-                  feedUser = "J attends que vous m indiquiez la localisation ou la couleur. Encore un click !";
+                  feedUser = "J attends la localisation ou la couleur. Encore un click !";
                   break;
                case 0:
                   keepW = true;
-                  feedUser = "J attends que vous m indiquiez la localisation et la couleur. Encore 2 clicks !";
+                  feedUser = "J attends la localisation et la couleur. Encore 2 clicks !";
                   break;
                default:
                  keepW = false;
@@ -306,7 +306,7 @@ public class FusionData {
                  {
                    if(from_palette_s.size()<1)
                     { keepW = true;
-                    feedUser = "J attends que vous m indiquiez la couleur. Encore un click !";
+                    feedUser = "J attends la couleur. Encore un click !";
                     }
                    else
                     {
@@ -334,15 +334,15 @@ public class FusionData {
                break;
              case 1:
                keepW = true; 
-               feedUser = "J attends que vous m indiquiez la nouvelle couleur. Encore un click !";             
+               feedUser = "J attends la nouvelle couleur. Encore un click !";             
                break;
              case 0:
-               feedUser = "J attends que vous m indiquiez la forme et la nouvelle couleur. Encore 2 clicks !";
+               feedUser = "J attends la forme pointee et la nouvelle couleur. Encore 2 clicks !";
                keepW = true;
                break;
              default:
                noMatch = true;
-               feedUser = "Trop de clicks ! Je ne comprends pas, je vais recommancer...";
+               feedUser = "Trop de clicks ! Je ne comprends pas, je vais recommencer...";
                break;
              }
        }
@@ -357,11 +357,11 @@ public class FusionData {
                break;
              case 0:
                keepW = true;
-               feedUser = "J attends que vous m indiquiez la forme. Encore un click !";
+               feedUser = "J attends la forme pointee. Encore un click !";
                break;
              default:
                noMatch = true;
-               feedUser = "Trop de clicks ! Je ne comprends pas, je vais recommancer...";
+               feedUser = "Trop de clicks ! Je ne comprends pas, je vais recommencer...";
                break;
              }
          }
@@ -378,11 +378,11 @@ public class FusionData {
                break;
              case 0:
                keepW = true;
-               feedUser = "J attends que vous m indiquiez la nouvelle couleur. Encore un click !";
+               feedUser = "J attends la nouvelle couleur. Encore un click !";
                break;
              default:
                noMatch = true;
-               feedUser = "Trop de clicks ! Je ne comprends pas, je vais recommancer...";
+               feedUser = "Trop de clicks ! Je ne comprends pas, je vais recommencer...";
                break;
              }
           }
@@ -394,12 +394,12 @@ public class FusionData {
        if((shape[0].equals("undefined") && shape[1].equals("undefined") && shape[2].equals("undefined"))) {
             shapeIn = false; 
             keepW = true;
-            feedUser = "J attends que vous m indiquiez une forme par le geste. On y est presque !";
+            feedUser = "J attends une forme par le geste. On y est presque !";
           } // wait for at least one shape input
        else
        {
         shapeIn = true;
-      // waiting 2.4s to get more inputs on shape for robustness
+      // waiting 1 s to get more inputs on shape for robustness
         if(shape[0].equals("undefined") || shape[1].equals("undefined") || shape[2].equals("undefined"))
           {
             delay(1000); // waiting for other shape input for robustness 

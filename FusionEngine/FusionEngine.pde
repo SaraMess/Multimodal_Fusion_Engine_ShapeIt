@@ -44,7 +44,7 @@ void setup()
       {
         if(data.doIListen()){
         state = FSM.REJECTION;
-        data.feedUser = "Je suis dure d'oreille, pourriez vous répéter ?";
+        data.feedUser = "Je suis dure d'oreille, peux tu repeter ?";
         }
         
       }        
@@ -59,7 +59,7 @@ void setup()
         data.reset();
         data.startListen();  
         state = FSM.INIT;
-        data.feedUser = "J attends que tu me dise \"Commence\" !";
+        data.feedUser = "J attends le mot magique \"Commence\" !";
         
       }        
     });
@@ -200,7 +200,7 @@ void draw()
   switch(state) {
     case INIT:
       // waiting start signal
-      data.feedUser = "J attends que tu me dise \"Commence\" !";
+      data.feedUser = "J attends le mot magique \"Commence\" !";
       text(data.feedUser, 20, 50);
       if(data.doIListen())
         {state = FSM.LISTENING;
@@ -228,7 +228,7 @@ void draw()
       
     case PROCESSING :
       // perform fusion
-      data.feedUser = "J essaye de comprendre votre demande...";
+      data.feedUser = "J essaye de comprendre la demande...";
       text(data.feedUser, 20, 50);
       data.dataFuse();
       text(data.feedUser, 20, 50);
@@ -239,7 +239,7 @@ void draw()
       
      case EXECUTION:
        // waiting feedback from Board
-       data.feedUser = "J ai compris ! Je m exécute";
+       data.feedUser = "J ai compris ! Je m execute";
        text(data.feedUser, 20, 50);
        if(data.result !=""){
          data.reset();
@@ -255,7 +255,7 @@ void draw()
        
      case REJECTION:
        // reset engine after speech rejection event
-       data.feedUser = "Je n'ai pas compris... Je dois recommencer.";
+       data.feedUser = "Je n ai pas compris... Je dois recommencer.";
        text(data.feedUser, 20, 50);
        data.reset();
        state = FSM.INIT; // need to say "commence" again
@@ -266,7 +266,7 @@ void draw()
        break;
   }
   background(232,232,232);
-  text("** Mon état courant **", 100,20);
+  text("** Mon etat courant **", 100,20);
   text(data.feedUser, 20, 50);
   if(!data.feedUser.equals(userFeed))
   {
