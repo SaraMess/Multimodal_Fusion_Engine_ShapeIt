@@ -173,7 +173,7 @@ public class FusionData {
                if(c_rec[0].equals("undefined"))
                  c_rec[2] = from_palette_c.get(0);
                loca2send = "1"; // the location
-               if(!from_palette_s.get(0).equals("undefined") && !data.action.equals("c") && c_rec[0].equals("undefined"))
+               if(!from_palette_s.get(0).equals("undefined") && !data.action.equals("c") && (c_rec[0].equals("undefined") || c_rec[0].equals(from_palette_c.get(0))))
                {
                  speCase = true;
                  exactShape = "0";
@@ -231,7 +231,7 @@ public class FusionData {
                   if(c_rec[0].equals("undefined"))
                     c_rec[2] = from_palette_c.get(0);
                   loca2send = "-9"; // random
-                  if(!from_palette_s.get(0).equals("undefined") && !data.action.equals("c") &&  c_rec[0].equals("undefined"))
+                  if(!from_palette_s.get(0).equals("undefined") && !data.action.equals("c") &&  (c_rec[0].equals("undefined") || c_rec[0].equals(from_palette_c.get(0))))
                    {
                      speCase = true;
                      exactShape = "0";
