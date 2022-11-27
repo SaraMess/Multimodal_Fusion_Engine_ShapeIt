@@ -1,10 +1,9 @@
 
 
 /*
- * Palette Graphique - prélude au projet multimodal 3A SRI
- * 4 objets gérés : cercle, rectangle(carré), losange et triangle
- * (c) 05/11/2019
- * Dernière révision : 28/04/2020
+ * Adapted from Palette Graphique - prélude au projet multimodal 3A SRI  28/04/2020
+ * (c) Author: Sara Messara
+ * Last Revision: 27.11.2022
  */
  
 import java.awt.Point;

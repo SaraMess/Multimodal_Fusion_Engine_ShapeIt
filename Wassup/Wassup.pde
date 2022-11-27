@@ -1,10 +1,6 @@
 /*
- *  vocal_ivy -> Demonstration with ivy middleware
- * v. 1.2
- * 
- * (c) Ph. Truillet, October 2018-2019
- * Last Revision: 22/09/2020
- * Gestion de dialogue oral
+ * (c) Author: Sara Messara
+ * Last Revision: 27.11.2022
  */
  
 import fr.dgac.ivy.*;
