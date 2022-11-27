@@ -1,5 +1,6 @@
 # ShapeIt : A Multimodal Fusion Engine
 # *Shape it like you spell it*
+Author : Sara Messara
 ## DESCRIPTION
 
 * The objective behind this project is to design, implement and test a multi-modal fusion engine able to simultaneously manage three types of modalities, namely, speech recognition, gesture recognition and mouse clicking from three different sources. 
