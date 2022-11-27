@@ -22,6 +22,7 @@ void setup()
 { 
   size(525,100);
   surface.setLocation(1390,880);
+  surface.setResizable(true);
   // graphical display
   fill(0,0,0);
   surface.setTitle("Multimodalities Fusion Engine");
@@ -96,11 +97,9 @@ void setup()
     {
       public void receive(IvyClient client,String[] args)
       {
-        println(data.doIListen());
         if(data.doIListen())
         {
         order = 1;
-        println("reception colo");
         data.pointing = Boolean.valueOf(args[0]);
         data.recieved = true;
         data.action = args[1];
@@ -118,11 +117,9 @@ void setup()
     {
       public void receive(IvyClient client,String[] args)
       {
-        println(data.doIListen());
         if(data.doIListen())
         {
         order = 1;
-        println("reception colo loca");
         data.pointing = Boolean.valueOf(args[0]);
         data.recieved = true;
         data.action = args[1];
@@ -140,7 +137,6 @@ void setup()
       {
         if(data.doIListen())
         {
-        println("reception loca colo");
         order = 2;
         data.pointing = Boolean.valueOf(args[0]);
         data.recieved = true;
@@ -178,7 +174,6 @@ void setup()
         data.from_palette_s.add(args[0]); // input shape
         data.from_palette_c.add(args[1]); // input color
         data.confi[2] = Float.valueOf(args[2]);
-        println(data.from_palette_s.size());
         }
       }        
     }); 
@@ -206,7 +201,6 @@ void draw()
     case INIT:
       // waiting start signal
       data.feedUser = "J attends que tu me dise \"Commence\" !";
-      //println("here");
       text(data.feedUser, 20, 50);
       if(data.doIListen())
         {state = FSM.LISTENING;
@@ -221,10 +215,8 @@ void draw()
       if(data.recieved) // wait reception from speech
         {
         data.dataWait(order); // blocking function
-        println("still listen");
         if(data.allIn)
         {
-          println("all input in");
           data.stopListening();
           if(data.noMatch)
             state = FSM.REJECTION;
@@ -240,7 +232,6 @@ void draw()
       text(data.feedUser, 20, 50);
       data.dataFuse();
       text(data.feedUser, 20, 50);
-      println("end fusion");
       // send instruction to Board
       data.dataSend();
       state = FSM.EXECUTION;
@@ -248,7 +239,7 @@ void draw()
       
      case EXECUTION:
        // waiting feedback from Board
-       data.feedUser = "J'ai compris ! Je m'exécute";
+       data.feedUser = "J ai compris ! Je m exécute";
        text(data.feedUser, 20, 50);
        if(data.result !=""){
          data.reset();
@@ -276,18 +267,6 @@ void draw()
   }
   background(232,232,232);
   text("** Mon état courant **", 100,20);
-  /*if(state == FSM.INIT)
-    text("J'attends que tu me dises \"commence\" ! ", 20, 50);
-  if(state == FSM.LISTENING)
-    text("Je t'écoute et te vois ! ", 20, 50);
-  if(state == FSM.PROCESSING)
-    text("J'essaye de comprendre ce que tu veux !" , 20, 50);
-  if(state == FSM.EXECUTION)
-    text("Oui chef !", 20, 50);
-  if(state == FSM.REJECTION)
-    text("Je ne t'ai pas bien entendu...", 20, 50);
-    textSize(20);*/
-    
   text(data.feedUser, 20, 50);
   if(!data.feedUser.equals(userFeed))
   {

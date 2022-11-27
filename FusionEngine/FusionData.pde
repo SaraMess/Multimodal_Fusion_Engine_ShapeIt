@@ -1,5 +1,5 @@
 public class FusionData {
-  /** Data strucutre for multimodal inputs and outputs management
+  /** Data strucutre for multimodal input and output data management
     */
   
   int numIn; // number of modalities 
@@ -154,12 +154,10 @@ public class FusionData {
              case 1:
                 keepW = true;
                 feedUser = "J attends que tu m'indiques la couleur ou la position. Encore un click !";
-                println("stuck 1");
                 break;
              case 0:
                 keepW = true;
                 feedUser = "J attends que tu m'indiques la couleur et la position. Encore 2 clicks !";
-                println("stuck 1");
                 break;
              default:
                keepW = false;
@@ -179,7 +177,6 @@ public class FusionData {
                {
                  speCase = true;
                  exactShape = "0";
-                 println("special2");
                }
                break;
              case 1:
@@ -187,7 +184,6 @@ public class FusionData {
              break;
              case 0:
                keepW = true;
-               println("stuck 2");
                feedUser = "J attends que tu m'indiques la position. Encore un click !";
                break;
              default:
@@ -218,7 +214,6 @@ public class FusionData {
              case 0:
                keepW = true;
                feedUser = "J attends la couleur. Encore un click !";
-               println("stuck 3");
                break;
              default:
                keepW = false;
@@ -235,7 +230,6 @@ public class FusionData {
                   shape[2] = from_palette_s.get(0);
                   if(c_rec[0].equals("undefined"))
                     c_rec[2] = from_palette_c.get(0);
-                  print("added");
                   loca2send = "-9"; // random
                   if(!from_palette_s.get(0).equals("undefined") && !data.action.equals("c") &&  c_rec[0].equals("undefined"))
                    {
@@ -278,13 +272,11 @@ public class FusionData {
                  break;
                case 1:
                   keepW = true;
-                  println("stuck 5");
                   feedUser = "J attends que vous m indiquiez la localisation ou la couleur. Encore un click !";
                   break;
                case 0:
                   keepW = true;
                   feedUser = "J attends que vous m indiquiez la localisation et la couleur. Encore 2 clicks !";
-                  println("stuck 5");
                   break;
                default:
                  keepW = false;
@@ -295,7 +287,6 @@ public class FusionData {
            }
            else
            {
-             println(from_palette_s.size());
              if(from_palette_s.size()<1)
               { 
                 keepW = true;
@@ -315,7 +306,6 @@ public class FusionData {
                  {
                    if(from_palette_s.size()<1)
                     { keepW = true;
-                    println("special 1");
                     feedUser = "J attends que vous m indiquiez la couleur. Encore un click !";
                     }
                    else
@@ -329,7 +319,6 @@ public class FusionData {
      else
      // studying cases when action = coloring 
      {
-       println("coloring");
        if(data.pointing) // pointing an exact shape 
        {
           if(colorN.equals("palette")) // Poiting a color
@@ -342,7 +331,6 @@ public class FusionData {
                shape[2] = from_palette_s.get(0);
                speCase = true;
                exactShape = "0";
-               println("spe col");
                break;
              case 1:
                keepW = true; 
@@ -402,7 +390,6 @@ public class FusionData {
      }
      }
        
-       println("end of click testing");
        // waiting to get at least one input on shape
        if((shape[0].equals("undefined") && shape[1].equals("undefined") && shape[2].equals("undefined"))) {
             shapeIn = false; 
@@ -415,12 +402,10 @@ public class FusionData {
       // waiting 2.4s to get more inputs on shape for robustness
         if(shape[0].equals("undefined") || shape[1].equals("undefined") || shape[2].equals("undefined"))
           {
-            println("another shape maybe");
-            //delay(2400); // waiting for other shape input for robustness
+            delay(1000); // waiting for other shape input for robustness 
           }
        }
         allIn = !keepW && shapeIn;
-        println(keepW);
     }
  
    void dataFuse() {
@@ -429,11 +414,7 @@ public class FusionData {
        if(c_rec[0].equals("palette"))
        {
          c = c_rec[2];
-         println("here");
-         println(c_rec[2]);
        }
-      println("in fusion");
-      println(c_rec[0]);
            float max = -1; 
            int index = 0;
            // maximize output's confidence
@@ -443,7 +424,6 @@ public class FusionData {
              {
                max = confi[i];
                index = i;
-               println(index);
              }
               if(!(c_rec[i].equals("undefined")) && !(c_rec[0].equals("palette")))
                  c = c_rec[i];
@@ -480,7 +460,6 @@ public class FusionData {
         {
       try {
           bus.sendMsg("mfe action=" + data.action + " shape=" + data.shape2send + " color=" + data.c + " end local=" + data.loca2send); 
-          println(data.loca2send);  
         }
       catch (IvyException e) {}
       }

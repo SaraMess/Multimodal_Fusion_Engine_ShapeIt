@@ -31,7 +31,7 @@ List<Integer> y_pos;
 void setup() {
   // display
   size(900,1010);
-  surface.setResizable(false);
+  surface.setResizable(true);
   surface.setTitle("Board");
   surface.setLocation(-10,0);
   sketch_icon = loadImage("Palette.jpg");
@@ -54,12 +54,12 @@ void setup() {
     bus.start("127.255.255.255:2010");
     
     
-    
+    // subscribe to Ivy messages
+    // color message
     bus.bindMsg("^mfe action=o shape=(.*) color=(.*) eShape=(.*) colorN=(.*)", new IvyMessageListener()
     {
       public void receive(IvyClient client, String[] args)
       {
-        println("recep color");
         if(data.start)
         {
           data.recieved = true; 
@@ -74,11 +74,11 @@ void setup() {
               data.message = "Un erreur est survenue lors de l'execution. Je dois recommencer.";
             }
           data.newColor= args[3];
-          println(data.locate);
         }
       }        
     });
     
+    // other actions
     bus.bindMsg("^mfe action=(.*) shape=(.*) color=(.*) eShape=(.*) local=(.*)", new IvyMessageListener()
     {
       public void receive(IvyClient client, String[] args)
@@ -97,8 +97,6 @@ void setup() {
               mae = FSM.DISPLAY_SHAPE;
               data.message = "Un erreur est survenue lors de l'execution. Je dois recommencer.";
             }
-          println(data.locate);
-          println("exact");
         }
       }        
     });
@@ -119,11 +117,11 @@ void setup() {
               mae = FSM.DISPLAY_SHAPE;
               data.message = "Un erreur est survenue lors de l'execution. Je dois recommencer.";
             }
-          println(data.locate);
         }
       }        
     });
     
+    // start  signal
     bus.bindMsg("^sra5 Parsed=1 start=1 (.*)", new IvyMessageListener()
     {
       public void receive(IvyClient client, String[] args)
@@ -136,6 +134,7 @@ void setup() {
       }        
     });
     
+    // cocorico
     bus.bindMsg("^mfe cocorico", new IvyMessageListener()
     {
       public void receive(IvyClient client, String[] args)
@@ -149,6 +148,7 @@ void setup() {
       }        
     });
     
+    // exit signal
     bus.bindMsg("OneDollarIvy exit", new IvyMessageListener()
     {
       public void receive(IvyClient client, String[] args)
@@ -237,7 +237,7 @@ void draw() {
           
         default:
           mae = FSM.DISPLAY_SHAPE;
-          data.message = "action not recognised";
+          //data.message = "action not recognised";
           data.message = "L action n est pas repertoriee.";
           break;
       }
@@ -264,8 +264,8 @@ void draw() {
         f.setColor(data.current_c);
         formes.add(f);
         data.result = true;
-        data.message = "Rectangle created successfully!";
-        data.message = "Rectangle créé avec succès !";
+        //data.message = "Rectangle created successfully!";
+        data.message = "Rectangle cree avec succes !";
         break;
       
       case 'c':
@@ -273,8 +273,8 @@ void draw() {
         formes.add(f2);
         f2.setColor(data.current_c);
         data.result = true;
-        data.message = "Circle created successfully!";
-        data.message = "Cercle créé avec succès !";
+        //data.message = "Circle created successfully!";
+        data.message = "Cercle cree avec succes !";
         break;
     
       case 't':
@@ -282,8 +282,8 @@ void draw() {
         formes.add(f3);
         f3.setColor(data.current_c);
         data.result = true;
-        data.message = "Triangle created successfully!";
-        data.message = "Triangle creé avec succès !";
+        //data.message = "Triangle created successfully!";
+        data.message = "Triangle cree avec succes !";
         break;  
       
       case 'l':
@@ -291,13 +291,13 @@ void draw() {
         formes.add(f4);
         f4.setColor(data.current_c);
         data.result = true;
-        data.message = "Diamond created successfully!";
-        data.message = "Losange créé avec succès !";
+        //data.message = "Diamond created successfully!";
+        data.message = "Losange cree avec succes !";
         break;    
       
       default : 
         data.result = false;
-        data.message = "Shape not recognised. could not draw. Would you want to try again?";
+        //data.message = "Shape not recognised. could not draw. Would you want to try again?";
         data.message = "Je ne connais pas cette forme. Voulez vous reessayer?";
         break;
      }
@@ -314,7 +314,7 @@ void draw() {
      if (data.shape_id == -1)
      {
        mae = FSM.DISPLAY_SHAPE;
-       data.message = "Indicated shape not found.";
+       //data.message = "Indicated shape not found.";
        data.message = "La forme voulue n existe pas. Je n ai rien pu deplacer.";
        data.result = false;
      }
@@ -331,8 +331,8 @@ void draw() {
        data.shape_id=-1; // reset
        mae=FSM.DISPLAY_SHAPE;
        data.result = true;
-       data.message = "Shape moved succesfully.";
-       data.message = "Forme deplacée avec succès !";
+       //data.message = "Shape moved succesfully.";
+       data.message = "Forme deplacee avec succes !";
        affiche();
        break;
      
@@ -346,13 +346,13 @@ void draw() {
          if (data.shape_id == -1)
          {
            data.result = false;
-           data.message = "Indicated shape not found. No action was performed.";
+           //data.message = "Indicated shape not found. No action was performed.";
            data.message = "La forme voulue n existe pas. Je n ai rien pu supprimer.";
          }
          else {
            formes.remove(data.shape_id);
-           data.message = "Shape deleted succesfully";
-           data.message = "La forme a ete supprimee avec succès ! ";
+           //data.message = "Shape deleted succesfully";
+           data.message = "La forme a ete supprimee avec succes ! ";
          }
          mae = FSM.DISPLAY_SHAPE;
          break;
@@ -366,7 +366,7 @@ void draw() {
          if (data.shape_id == -1)
          {
            data.result = false;
-           data.message = "Indicated shape not found. No action was performed.";
+           //data.message = "Indicated shape not found. No action was performed.";
            data.message = "La forme voulue n existe pas. Je n ai rien pu colorier.";
          }
          else {
@@ -380,8 +380,8 @@ void draw() {
          else
            coul = color(random(0,255),random(0,255),random(0,255));
            formes.get(data.shape_id).setColor(coul);
-           data.message = "Shape colored succesfully";
-           data.message = "La forme a ete coloriee avec succès !";
+           //data.message = "Shape colored succesfully";
+           data.message = "La forme a ete coloriee avec succes !";
          }
          mae = FSM.DISPLAY_SHAPE;
          break;
@@ -454,14 +454,10 @@ void mousePressed() { // sur l'événement click
       // send pointed shape to server
       for (int i=0;i<formes.size();i++) { // we're trying every object in the list
         if ((formes.get(i)).isClicked(p)) {
-          //(formes.get(i)).setColor(color(random(0,255),random(0,255),random(0,255)));
           index = i;
-          //println("boolean ", ((formes.get(i)).c == (formes.get(i)).c));
         }
       } 
       if( index != -1) {
-        println("couleur ivy");
-        println((formes.get(index)).getColorString());
         selected_here = true;
         try {
           bus.sendMsg("Board shape=" + (formes.get(index)).getType() + " color="+(formes.get(index)).getColorString()+ " Confidence=" + String.format("%.2f", 1.0f));
@@ -469,7 +465,6 @@ void mousePressed() { // sur l'événement click
         catch (IvyException ie) {}
        }
       else {
-        println("couleur ivy");
         selected_here = true;
         try {
           bus.sendMsg("Board shape=undefined color=undefined Confidence=" + String.format("%.2f", 1.0f));

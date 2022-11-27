@@ -29,10 +29,13 @@ void setup()
   size(1020, 1010); 
   surface.setTitle("ShapeIt - Welcome page");
   surface.setLocation(890,0);
+  surface.setResizable(true);
   img = loadImage("welcome33.png");
   // init 
   state = WAIT_MSG;
   recieved = false;
+  
+  // binding to Ivy messages
   try
   {
     bus = new Ivy("Wassup", "Wassup is ready", null);
@@ -54,6 +57,7 @@ void setup()
         exit();
       }        
     });
+    
     // feedback of execution
     bus.bindMsg("^mfe result of execution:(.*)", new IvyMessageListener()
     {
@@ -64,6 +68,7 @@ void setup()
         state = SEND_FEEDBACK;
       }        
     });
+    
     // speech rejection event
     bus.bindMsg("^mfe event=abort", new IvyMessageListener()
     {
@@ -115,18 +120,4 @@ void draw()
   textSize(20);
   fill(0, 0, 0);
   text(userFeed, 600,450,350,300);
-  /*
-  textAlign(LEFT);
-  textSize(20); 
-  text("Tell me what do you want to do? \n", -10, 500);
-  textSize(20); 
-  text("To indicate the shape location, it's easy! Just swip the mouse without clicking :)\n", -10, 600);
-  textSize(20); 
-  text("** FEEDBACK NODE ETAT COURANT **", 20,20);
-  text(state, 20, 50);*/
-  
-  /*"Pour commencer une action tu dois dire le mot magique -commence-, dis moi ensuite quelle action tu veux faire, tu peux soit me dire quelle forme tu veux, la dessiner sur la palette du mileu"
-  " ou selectionner une forme par un clique droit sur la palette de gauche"
-  "pour m'indiquer l'endroit cible, facile ! tu n'as qu'a la pointer avec la souris sans cliquer"
-  "Ah bien que jeune, j'ai l'oreille assez dur, n'hesite pas a me redire si je n'ai pas compris!"*/
 }

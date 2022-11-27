@@ -1,4 +1,7 @@
 public class Instruction {
+  /** Data strucutre for the instruction managment
+    */
+  
   int shape_id; // index of the pointed shape
   char action_server; // target action
   char shape_server; // target shape
@@ -9,9 +12,9 @@ public class Instruction {
   boolean recieved; // recieved instruction from server
   boolean result; // excution feedback
   String message; // message to publish
-  int locate;
-  int elocate;
-  String newColor;
+  int locate; // shape localisation 
+  int elocate; // exact shape to modify
+  String newColor; // new color to assign
   
   public Instruction() {
     shape_id = -1;
@@ -28,6 +31,8 @@ public class Instruction {
   }
   
   void reset()
+  /* reset the data
+  */
   {
     shape_id = -1;
     start = false; //start of execution
@@ -43,6 +48,8 @@ public class Instruction {
   }
   
   int lookForShape(int x,int y) {
+    /* search a shape either with coordinates or with geometry and color
+    */
     if(data.elocate <0)
     {
     if(!c_server.equals("undefined"))
@@ -70,12 +77,9 @@ public class Instruction {
       // send pointed shape to server
       for (int i=0;i<formes.size();i++) { // we're trying every object in the list
         if ((formes.get(i)).isClicked(p)) {
-          //(formes.get(i)).setColor(color(random(0,255),random(0,255),random(0,255)));
           data.shape_id = i;
-          //println("boolean ", ((formes.get(i)).c == (formes.get(i)).c));
         }
       }
-      println("passing in spe");
     }
     
     return shape_id;

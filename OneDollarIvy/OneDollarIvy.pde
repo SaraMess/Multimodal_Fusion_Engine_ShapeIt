@@ -7,6 +7,7 @@
  * Last Revision: 13/07/2022
  * 
  * $1 Dollar Recognizer - http://depts.washington.edu/aimgroup/proj/dollar/
+ * readapted by Sara Messara 27.11.2022
 */
 
 
@@ -41,6 +42,7 @@ PImage sketch_icon;
 void setup() {
   size(500, 500);
   surface.setTitle("Gesture Recognizer");
+  surface.setResizable(true);
   surface.setLocation(890,0);
   sketch_icon = loadImage("onedollar.jpg");
   surface.setIcon(sketch_icon);
@@ -98,9 +100,8 @@ void draw() {
           bus.sendMsg("OneDollarIvy Template=" + result.Name + " Confidence=" + String.format("%.2f",result.Score));
         }
         catch (IvyException ie) {}
-        //result = null;
        }
-       else
+       else // shutting the programs
        {
          try {
           bus.sendMsg("OneDollarIvy exit");
