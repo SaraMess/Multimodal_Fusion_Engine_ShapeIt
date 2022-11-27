@@ -4,7 +4,10 @@
 * The objective behind this project is to design, implement and test a multi-modal fusion engine able to simultaneously manage three types of modalities, namely, speech recognition, gesture recognition and mouse clicking from three different sources. 
 The goal being to combine these information into one instruction that would operate on shapes. The pattern aligns with the MIT project's: "Put That Here" [a link](https://www.media.mit.edu/publications/put-that-there-voice-and-gesture-at-the-graphics-interface/)
 
-* ShapeIt application was the outcome of the project. This interface is built upon the combination of 6 different sub-programs able to communicate through the Ivy bus protocol, namely, ppilot5, sra5, 1$Ivy, Board, Wassup and FusionEngine.
+* ShapeIt application was the outcome of the project. This interface is built upon the combination of 6 different sub-programs able to communicate through the Ivy bus protocol, namely, ppilot5, sra5, 1$Ivy, Board, Wassup and FusionEngine. 
+
+## DEMO
+Youtube link : [ShapeIt Youtube](https://www.youtube.com/watch?v=-5eu5oxmhjU&ab_channel=SaraMESSARA)
 
 ## PREREQUISITES
 - For an optimal experience, we advice the use of a headphone provided with a microphone. This will reduce tremendously the speech recognition errors as the interaction is very dependant on the recognition confidence.
