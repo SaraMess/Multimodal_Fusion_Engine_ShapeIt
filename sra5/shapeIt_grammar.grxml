@@ -10,6 +10,7 @@
                               grammar.xsd"
           xml:lang="fr-FR" root="Speech_Recognition" tag-format="semantics/1.0">
 
+	<!-- start magic world-->
 	<rule id="Speech_Recognition" scope="public">
 		<one-of>
 			<item> commence <tag> out = "1 start=1" </tag> </item>
@@ -17,7 +18,7 @@
 		</one-of>
 	</rule>
 	
-	
+	<!-- instruction combinations-->
 	<rule id="instruction">
 		<one-of>
 			<item> <ruleref uri="#total"/> <tag> out = rules.total </tag> </item>
@@ -30,7 +31,8 @@
 		</one-of> 
 	</rule>
 	
-	<!-- not pointing the color-->
+	<!-- create and move actions -->
+	<!-- pointing a shape not pointing necessarly the color-->
 	<rule id="total">
 		<tag>
 		out.point = "false";
@@ -47,6 +49,7 @@
 		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " color=" + out.color + " localisation=" + out.local </tag>
 	</rule>
 	
+	<!-- pointing a shape not pointing necessarly the localisation-->
 	<rule id="total_">
 		<tag>
 		out.point = "false";
@@ -64,6 +67,7 @@
 		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " localisation=" + out.local + " color=" + out.color </tag>
 	</rule>
 	
+	<!-- not pointing a shape -->
 	<rule id="total2">
 		<tag>
 		out.point = "false";
@@ -80,6 +84,7 @@
 		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " color=" + out.color + " localisation=" + out.local </tag>
 	</rule>
 	
+	<!-- not pointing a shape different order of localisation and color -->
 	<rule id="total2_">
 		<tag>
 		out.point = "false";
@@ -96,6 +101,7 @@
 		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " localisation=" + out.local  + " color=" + out.color </tag>
 	</rule>
 	
+	<!-- delete action-->
 	<rule id="total3">
 		<tag>
 		out.point = "false";
@@ -113,6 +119,7 @@
 		<tag> out = "1 pointage=" + out.point +" action=" + out.action + " shape=" + out.shape + " color=" + out.color + " localisation=false" </tag>
 	</rule>
 	
+	<!-- coloring action -->
 	<rule id="total4">
 		<tag>
 		out.point = "false";
@@ -168,7 +175,7 @@
 	<rule id="actionO">
 		<one-of>
 			<item> colorie <tag> out = "o" </tag></item>
-			<item> peint <tag> out = "o" </tag></item>
+			<item> peins <tag> out = "o" </tag></item>
 			<item> change <tag> out = "o" </tag></item>
 		</one-of>
 	</rule>
