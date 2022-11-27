@@ -1,9 +1,9 @@
 # ShapeIt : A Multimodal Fusion Engine
-# -Shape it like you spell it-
+# *Shape it like you spell it*
 ## DESCRIPTION
 
 * The objective behind this project is to design, implement and test a multi-modal fusion engine able to simultaneously manage three types of modalities, namely, speech recognition, gesture recognition and mouse clicking from three different sources. 
-The goal being to combine these information into one instruction that would operate on shapes. The pattern aligns with the MIT project's: "Put That Here" [MIT PTH](https://www.media.mit.edu/publications/put-that-there-voice-and-gesture-at-the-graphics-interface/)
+The goal being to combine these information into one instruction that would operate on shapes. The pattern aligns with the MIT project's: "Put That Here" [MIT PTH](https://www.media.mit.edu/publications/put-that-there-voice-and-gesture-at-the-graphics-interface/).
 
 * ShapeIt application was the outcome of the project. This interface is built upon the combination of 6 different sub-programs able to communicate through the Ivy bus protocol, namely, ppilot5, sra5, 1$Ivy, Board, Wassup and FusionEngine. 
 
