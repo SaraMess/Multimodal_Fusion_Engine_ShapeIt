@@ -13,7 +13,7 @@ Youtube link : [ShapeIt Youtube](https://www.youtube.com/watch?v=-5eu5oxmhjU&ab_
 
 ## PREREQUISITES
 - For an optimal experience, we advice the use of a headphone provided with a microphone. This will reduce tremendously the speech recognition errors as the interaction is very dependant on the recognition confidence.
-- The windows positioning and sizing of the programs \textbf{Board}, \textbf{OneDollarIvy} and \textbf{Wassup} were designed based on a screen resolution of $1920 \times 1080$ at 100\% zoom. If the user's screen does not comply with these specifications, a manual rearrangement and resizing of the windows will be required.
+- The windows positioning and sizing of the programs **Board**, **OneDollarIvy** and **Wassup** were designed based on a screen resolution of $1920 \times 1080$ at 100\% zoom. If the user's screen does not comply with these specifications, a manual rearrangement and resizing of the windows will be required.
 - The french version of this application requires a prior installation of "Microsoft Hortense Desktop" for the text to speech conversion.
 - This version was programmed using Processing 4.0.1, we do not guarantee compatibility with other versions.
 
